@@ -1,4 +1,5 @@
 <?php
+require_once('../Config/wtn_config.php');
 /**
  * Index
  *
