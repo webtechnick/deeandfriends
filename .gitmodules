@@ -10,3 +10,6 @@
 [submodule "app/Plugin/Configuration"]
 	path = app/Plugin/Configuration
 	url = git@github.com:webtechnick/CakePHP-Configuration-Plugin.git
+[submodule "app/Plugin/ClearCache"]
+	path = app/Plugin/ClearCache
+	url = git@github.com:ceeram/clear_cache.git

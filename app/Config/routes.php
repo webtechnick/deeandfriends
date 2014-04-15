@@ -21,7 +21,10 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-
+	
+	//combine edit and add
+	Router::connect('/admin/:controller/add', array('admin' => true, 'controller' => 'controller', 'action' => 'edit', 'origAction' => 'add'));
+	Router::connect('/:controller/add', array('controller' => 'controller', 'action' => 'edit', 'origAction' => 'add'));
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

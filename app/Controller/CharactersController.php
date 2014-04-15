@@ -8,13 +8,19 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class CharactersController extends AppController {
-
-/**
- * Components
- *
- * @var array
- */
 	public $components = array('Paginator', 'Session');
+	public $paginate = array(
+		'limit' => 2,
+		'order' => array(
+			'Character.name' => 'ASC'
+		),
+		'contain' => array('Headshot')
+	);
+	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Paginator->settings = $this->paginate;
+	}
 
 /**
  * admin_index method

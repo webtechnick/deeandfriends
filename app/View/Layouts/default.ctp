@@ -17,14 +17,14 @@
 		<?php echo $this->element('header'); ?>
 	</div>
 	
-	<div id="mainbody" class="container">
+	<div id="mainbody" class="p20">
 		<?php echo $this->Session->flash(); ?>
-		<div id="content">
+		<div id="content" class="container">
 			<?php echo $this->fetch('content'); ?>
 		</div>
 	</div>
 	
-	<div id="footer">
+	<div id="footer" class="p20">
 		<?php echo $this->element('footer'); ?>
 	</div>
 	
