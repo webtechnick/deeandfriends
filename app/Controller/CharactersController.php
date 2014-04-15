@@ -42,26 +42,6 @@ class CharactersController extends AppController {
 	}
 
 /**
- * admin_add method
- *
- * @return void
- */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Character->create();
-			if ($this->Character->save($this->request->data)) {
-				$this->Session->setFlash(__('The character has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The character could not be saved. Please, try again.'));
-			}
-		}
-		$headshots = $this->Character->Headshot->find('list');
-		$services = $this->Character->Service->find('list');
-		$this->set(compact('headshots', 'services'));
-	}
-
-/**
  * admin_edit method
  *
  * @throws NotFoundException
@@ -69,20 +49,21 @@ class CharactersController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
-		if (!$this->Character->exists($id)) {
-			throw new NotFoundException(__('Invalid character'));
-		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Character->save($this->request->data)) {
-				$this->Session->setFlash(__('The character has been saved.'));
+			if ($this->Character->saveAll($this->request->data)) {
+				$this->goodFlash('Character Saved');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The character could not be saved. Please, try again.'));
+				$this->badFlash('Unable to save character.');
 			}
-		} else {
+		}
+		
+		if ($id && empty($this->request->data)) {
 			$options = array('conditions' => array('Character.' . $this->Character->primaryKey => $id));
 			$this->request->data = $this->Character->find('first', $options);
+			$this->set('id', $id);
 		}
+		
 		$headshots = $this->Character->Headshot->find('list');
 		$services = $this->Character->Service->find('list');
 		$this->set(compact('headshots', 'services'));

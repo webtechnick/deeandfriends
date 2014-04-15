@@ -13,6 +13,8 @@ class Upload extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+	
+	public $actsAs = array('Icing.FileUpload');
 
 /**
  * Validation rules

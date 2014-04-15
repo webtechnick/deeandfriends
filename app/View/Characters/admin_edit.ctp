@@ -1,26 +1,30 @@
 <div class="characters form">
-<?php echo $this->Form->create('Character'); ?>
-	<fieldset>
-		<legend><?php echo __('Admin Edit Character'); ?></legend>
+	<h1>Add/Update a Character</h1>
+	<?php echo $this->Form->create('Character', array(
+		'inputDefaults' => array(
+			'div' => 'form-group',
+			'label' => array('class' => 'col col-md-3 control-label'),
+			'wrapInput' => 'col col-md-9',
+			'class' => 'form-control'
+		),
+		'class' => 'well form-horizontal',
+		'type' => 'file'
+	)); ?>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('headshot_id');
-		echo $this->Form->input('bio');
+		echo $this->Form->input('name', array(
+			'placeholder' => 'Character Name'
+		));
+		echo $this->Form->input('Upload.file', array('type' => 'file'));
+		echo $this->Form->input('bio', array('after' => '<div class="col-md-offset-3 pl20"><span class="help-block">About this character, history, etc..</span></div>'));
 		echo $this->Form->input('Service');
 	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Character.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Character.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Characters'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Uploads'), array('controller' => 'uploads', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Headshot'), array('controller' => 'uploads', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Services'), array('controller' => 'services', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Service'), array('controller' => 'services', 'action' => 'add')); ?> </li>
-	</ul>
+	
+	<div class="form-actions text-right">
+		<button class="btn btn-success btn-lg" type="submit">Save Character</button>
+		<?php if ($this->Form->value('Character.id')): ?>
+			<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $this->Form->value('Character.id')), array('class' => 'btn btn-danger btn-lg'), __('Are you sure you want to delete %s?', $this->Form->value('Character.name'))); ?>
+		<?php endif; ?>
+	</div>
+	</form>
 </div>

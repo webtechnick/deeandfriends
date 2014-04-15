@@ -1,3 +1,12 @@
 [submodule "app/Plugin/DebugKit"]
 	path = app/Plugin/DebugKit
 	url = git@github.com:cakephp/debug_kit.git
+[submodule "app/Plugin/BoostCake"]
+	path = app/Plugin/BoostCake
+	url = git@github.com:slywalker/cakephp-plugin-boost_cake.git
+[submodule "app/Plugin/Icing"]
+	path = app/Plugin/Icing
+	url = git@github.com:AudiologyHoldings/Icing.git
+[submodule "app/Plugin/Configuration"]
+	path = app/Plugin/Configuration
+	url = git@github.com:webtechnick/CakePHP-Configuration-Plugin.git

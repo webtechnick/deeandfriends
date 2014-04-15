@@ -1,52 +1,38 @@
-<?php
-/**
- *
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
+	<title><?php echo $title_for_layout; ?> | Dee Dee and Friends</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
-
+		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css('screen-base');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
+	<div id="header" class="p20">
+		<?php echo $this->element('header'); ?>
+	</div>
+	
+	<div id="mainbody" class="container">
+		<?php echo $this->Session->flash(); ?>
 		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	
+	<div id="footer">
+		<?php echo $this->element('footer'); ?>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<?php 
+		echo $this->fetch('script');
+		echo $this->Html->script('bootstrap.min');
+		echo $this->Js->writeBuffer(); 
+	?>
 </body>
 </html>

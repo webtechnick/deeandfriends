@@ -1,25 +1,44 @@
 <?php
-/**
- * Application level Controller
- *
- * This file is application-wide controller file. You can put all
- * application-wide controller-related methods here.
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Controller
- * @since         CakePHP(tm) v 0.2.9
- */
-
 App::uses('Controller', 'Controller');
-
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
- */
 class AppController extends Controller {
+	
+	public $helpers = array(
+		'Session',
+		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+	);
+	
+	public $components = array(
+		'Session',
+		'RequestHandler',
+		'DebugKit.Toolbar',
+	);
+	
+	public $uses = array('Character');
+	
+	public function beforeFilter() {
+		$this->set('nav_chars', $this->Character->find('list'));
+		return parent::beforeFilter();
+	}
+	
+	public function goodFlash($message) {
+		$this->__setFlash($message, 'alert-success');
+	}
+	
+	public function infoFlash($message) {
+		$this->__setFlash($message, 'alert-info');
+	}
+	
+	public function badFlash($message) {
+		$this->__setFlash($message, 'alert-danger');
+	}
+	
+	public function warnFlash($message) {
+		$this->__setFlash($message, 'alert-warning');
+	}
+	
+	private function __setFlash($message, $class = '') {
+		$this->Session->setFlash($message, 'alert', array('plugin' => 'BoostCake','class' => $class));
+	}
 }
