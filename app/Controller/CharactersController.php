@@ -10,7 +10,7 @@ App::uses('AppController', 'Controller');
 class CharactersController extends AppController {
 	public $components = array('Paginator', 'Session');
 	public $paginate = array(
-		'limit' => 2,
+		'limit' => 10,
 		'order' => array(
 			'Character.name' => 'ASC'
 		),

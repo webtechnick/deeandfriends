@@ -16,7 +16,8 @@ class UploadsControllerTest extends ControllerTestCase {
 		'app.upload',
 		'app.character',
 		'app.service',
-		'app.characters_service'
+		'app.characters_service',
+		'app.configuration'
 	);
 
 /**

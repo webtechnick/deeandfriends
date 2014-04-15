@@ -5,8 +5,11 @@ class AppController extends Controller {
 	public $helpers = array(
 		'Session',
 		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+		'TwitterHtml' => array('className' => 'BoostCake.BoostCakeHtml'),
 		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+		'TwitterForm' => array('className' => 'BoostCake.BoostCakeForm'),
 		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+		'TwitterPaginator' => array('className' => 'BoostCake.BoostCakePaginator'),
 	);
 	
 	public $components = array(
@@ -15,10 +18,11 @@ class AppController extends Controller {
 		'DebugKit.Toolbar',
 	);
 	
-	public $uses = array('Character');
+	public $uses = array('Character', 'Configuration.Configuration');
 	
 	public function beforeFilter() {
 		$this->set('nav_chars', $this->Character->find('list'));
+		$this->Configuration->load('DAF');
 		return parent::beforeFilter();
 	}
 	
