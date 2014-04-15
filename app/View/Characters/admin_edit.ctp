@@ -11,11 +11,16 @@
 		'type' => 'file'
 	)); ?>
 	<?php
+		echo $this->Friend->headshot($this->request->data, 100);
 		echo $this->Form->input('id');
 		echo $this->Form->input('name', array(
 			'placeholder' => 'Character Name'
 		));
-		echo $this->Form->input('Upload.file', array('type' => 'file'));
+		echo $this->Form->input('Headshot.file', array(
+			'type' => 'file',
+			'label' => array('text' => 'Headshot'),
+			'after' => '<div class="col-md-offset-3 pl20"><span class="help-block">'. IcingUtil::uploadLimit() .' MB Limit.</span></div>'
+		));
 		echo $this->Form->input('bio', array('after' => '<div class="col-md-offset-3 pl20"><span class="help-block">About this character, history, etc..</span></div>'));
 		echo $this->Form->input('Service');
 	?>

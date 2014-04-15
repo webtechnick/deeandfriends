@@ -80,4 +80,11 @@ class Upload extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public $hasOne = array(
+		'Toon' => array(
+			'className' => 'Character',
+			'foreignKey' => 'headshot_id'
+		)
+	);
 }

@@ -1,6 +1,10 @@
 <?php
 App::uses('AppHelper', 'View/Helper');
 class FriendHelper extends AppHelper {
+	
+	public $helpers = array(
+		'Icing.FileUpload'
+	);
 
 	public function set($character) {
 		$this->char = $character;
@@ -30,6 +34,9 @@ class FriendHelper extends AppHelper {
 		}
 		if (!empty($this->char['Headshot']['name'])) {
 			return $this->FileUpload->image($this->char['Headshot']['name'], $width);
+		}
+		if (isset($this->char['Toon']['name']) && !empty($this->char['Toon']['name'])) {
+			return $this->FileUpload->image($this->char['Toon']['name'], $width);
 		}
 		return null;
 	}

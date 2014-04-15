@@ -70,9 +70,8 @@ class CharactersController extends AppController {
 			$this->set('id', $id);
 		}
 		
-		$headshots = $this->Character->Headshot->find('list');
 		$services = $this->Character->Service->find('list');
-		$this->set(compact('headshots', 'services'));
+		$this->set(compact('services'));
 	}
 
 /**

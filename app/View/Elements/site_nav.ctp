@@ -30,7 +30,8 @@
             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-picture"></span> Uploads', array('admin' => true, 'plugin' => null, 'controller' => 'uploads', 'action' => 'index'), array('escape' => false)); ?></li>
             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Users', array('admin' => true, 'plugin' => null, 'controller' => 'users', 'action' => 'index'), array('escape' => false)); ?></li>
             <li class="divider"></li>
-            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> [Sign Out]</a></li>
+            <li><a href="http://pixlr.com/editor" target="_blank"><span class="glyphicon glyphicon-tint"></span> Image Editor</a></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
           </ul>
         </li>
       </ul>

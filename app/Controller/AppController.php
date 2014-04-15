@@ -1,5 +1,6 @@
 <?php
 App::uses('Controller', 'Controller');
+App::uses('IcingUtil', 'Icing.Lib');
 class AppController extends Controller {
 	
 	public $helpers = array(
@@ -10,6 +11,7 @@ class AppController extends Controller {
 		'TwitterForm' => array('className' => 'BoostCake.BoostCakeForm'),
 		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
 		'TwitterPaginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+		'Icing.FileUpload',
 	);
 	
 	public $components = array(

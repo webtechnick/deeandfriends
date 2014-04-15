@@ -59,6 +59,13 @@ class Character extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public $hasMany = array(
+		'Upload' => array(
+			'className' => 'Upload',
+			'foreignKey' => 'character_id'
+		)
+	);
 
 /**
  * hasAndBelongsToMany associations
