@@ -99,3 +99,4 @@
 	</div>
 	</form>
 </div>
+<?php echo $this->Ckeditor->replace('CharacterBio'); ?>
