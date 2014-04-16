@@ -12,6 +12,7 @@ class AppController extends Controller {
 		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
 		'TwitterPaginator' => array('className' => 'BoostCake.BoostCakePaginator'),
 		'Icing.FileUpload',
+		'Icing.Ckeditor'
 	);
 	
 	public $components = array(
@@ -23,7 +24,7 @@ class AppController extends Controller {
 	public $uses = array('Character', 'Configuration.Configuration');
 	
 	public function beforeFilter() {
-		$this->set('nav_chars', $this->Character->find('list'));
+		$this->set('nav_chars', $this->Character->findForNav());
 		$this->Configuration->load('DAF');
 		return parent::beforeFilter();
 	}

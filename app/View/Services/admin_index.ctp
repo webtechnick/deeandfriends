@@ -13,7 +13,7 @@
 	<tr>
 		<td><?php echo h($service['Service']['name']); ?>&nbsp;</td>
 		<td><?php echo $this->Number->currency($service['Service']['base_price_dollars']); ?>&nbsp;</td>
-		<td><?php echo $this->Text->truncate($service['Service']['details'], 50); ?>&nbsp;</td>
+		<td><?php echo $this->Text->truncate($service['Service']['details'], 100, array('html' => true)); ?>&nbsp;</td>
 		<td><?php echo $this->Time->niceShort($service['Service']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->niceShort($service['Service']['modified']); ?>&nbsp;</td>
 		<td class="actions">

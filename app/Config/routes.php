@@ -22,6 +22,13 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	
+	Router::connect('/friend/:slug',
+		array('controller' => 'characters', 'action' => 'friend_view'),
+		array(
+			'pass' => array('slug')
+		)
+	);
+	
 	//combine edit and add
 	Router::connect('/admin/:controller/add', array('admin' => true, 'controller' => 'controller', 'action' => 'edit', 'origAction' => 'add'));
 	Router::connect('/:controller/add', array('controller' => 'controller', 'action' => 'edit', 'origAction' => 'add'));

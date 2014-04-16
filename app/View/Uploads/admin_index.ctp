@@ -28,7 +28,7 @@
 		<td><?php echo $this->Time->niceShort($upload['Upload']['created']); ?>&nbsp;</td>
 		<td class="actions">
 			<div class="btn-group-vertical">
-				<?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $upload['Upload']['id']), array('class' => 'btn btn-xs btn-danger'), __('Are you sure you want to delete # %s?', $upload['Upload']['id'])); ?>
+				<?php echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span> ' . __('Delete'), array('action' => 'delete', $upload['Upload']['id']), array('class' => 'btn btn-danger', 'escape' => false), __('Are you sure you want to delete # %s?', $upload['Upload']['id'])); ?>
 			</div>
 		</td>
 	</tr>

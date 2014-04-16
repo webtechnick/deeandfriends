@@ -59,4 +59,13 @@ class CharactersService extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public function clearForCharacterId($character_id = null) {
+		return $this->deleteAll(array(
+			'OR' => array(
+				'CharactersService.character_id' => $character_id,
+				'CharactersService.service_id' => 0,
+			)
+		));
+	}
 }

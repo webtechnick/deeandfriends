@@ -23,4 +23,16 @@ body {
 	background-color: #fff;
 	color: #222;
 }
-
+.clear {
+	clear: both;
+}
+@media (min-width: $screen-md-min) { /* Large screen */
+	.form {
+		position: relative;
+	}
+	.headshot-admin {
+		position: absolute; 
+		left: 40px; 
+		top: 80px;
+	}
+}

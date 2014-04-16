@@ -38,11 +38,11 @@ class UploadsController extends AppController {
 		if (!$this->Upload->exists()) {
 			throw new NotFoundException(__('Invalid upload'));
 		}
-		$this->request->onlyAllow('post', 'delete');
 		if ($this->Upload->delete()) {
-			$this->Session->setFlash(__('The upload has been deleted.'));
+			$this->goodFlash(__('The upload has been deleted.'));
 		} else {
-			$this->Session->setFlash(__('The upload could not be deleted. Please, try again.'));
+			$this->badFlash(__('The upload could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

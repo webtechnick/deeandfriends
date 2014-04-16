@@ -28,16 +28,34 @@ class FriendHelper extends AppHelper {
   * @param character option
   * @return null or image of headshot
   */
-	public function headshot($character = null, $width = 300) {
+	public function headshot($character = null, $options = array()) {
 		if ($character) {
 			$this->set($character);
 		}
+		if (is_int($options)) {
+			$options = array('width' => $options);
+		}
+		$options = array_merge(array(
+			'width' => '300' 
+			),(array) $options);
 		if (!empty($this->char['Headshot']['name'])) {
-			return $this->FileUpload->image($this->char['Headshot']['name'], $width);
+			return $this->FileUpload->image($this->char['Headshot']['name'], $options);
 		}
 		if (isset($this->char['Toon']['name']) && !empty($this->char['Toon']['name'])) {
-			return $this->FileUpload->image($this->char['Toon']['name'], $width);
+			return $this->FileUpload->image($this->char['Toon']['name'], $options);
 		}
 		return null;
+	}
+	
+	public function hasService($character = null, $service_id = 0) {
+		if ($character) {
+			$this->set($character);
+		}
+		foreach ($this->char['CharactersService'] as $service) {
+			if ($service['service_id'] == $service_id) {
+				return $service;
+			}
+		}
+		return false;
 	}
 }

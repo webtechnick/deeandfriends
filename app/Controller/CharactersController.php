@@ -14,12 +14,39 @@ class CharactersController extends AppController {
 		'order' => array(
 			'Character.name' => 'ASC'
 		),
-		'contain' => array('Headshot')
+		'contain' => array('Headshot','CharactersService')
 	);
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Paginator->settings = $this->paginate;
+	}
+	
+	/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Character->exists($id)) {
+			throw new NotFoundException(__('Invalid character'));
+		}
+		$options = array('conditions' => array('Character.' . $this->Character->primaryKey => $id));
+		$this->set('character', $this->Character->find('first', $options));
+	}
+	
+	/**
+	* Friend view, /friend/Dee-Dee
+	*/
+	public function friend_view($slug = null) {
+		$id = $this->Character->findIdBySlug($slug);
+		if (!$id) {
+			$this->badFlash("I'm sorry, we don't know a $slug here.");
+			return $this->redirect('/');
+		}
+		$this->setAction('view', $id);
 	}
 
 /**
@@ -56,21 +83,20 @@ class CharactersController extends AppController {
  */
 	public function admin_edit($id = null) {
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Character->saveAll($this->request->data)) {
+			if ($this->Character->adminSave($this->request->data)) {
 				$this->goodFlash('Character Saved');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'edit', $this->Character->id));
 			} else {
 				$this->badFlash('Unable to save character.');
 			}
 		}
 		
 		if ($id && empty($this->request->data)) {
-			$options = array('conditions' => array('Character.' . $this->Character->primaryKey => $id));
-			$this->request->data = $this->Character->find('first', $options);
+			$this->request->data = $this->Character->findForEdit($id);
 			$this->set('id', $id);
 		}
 		
-		$services = $this->Character->Service->find('list');
+		$services = $this->Character->Service->findAllForAdmin();
 		$this->set(compact('services'));
 	}
 

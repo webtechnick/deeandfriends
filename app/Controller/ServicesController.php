@@ -42,25 +42,6 @@ class ServicesController extends AppController {
 	}
 
 /**
- * admin_add method
- *
- * @return void
- */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Service->create();
-			if ($this->Service->save($this->request->data)) {
-				$this->Session->setFlash(__('The service has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The service could not be saved. Please, try again.'));
-			}
-		}
-		$characters = $this->Service->Character->find('list');
-		$this->set(compact('characters'));
-	}
-
-/**
  * admin_edit method
  *
  * @throws NotFoundException
@@ -68,22 +49,22 @@ class ServicesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
-		if (!$this->Service->exists($id)) {
-			throw new NotFoundException(__('Invalid service'));
-		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Service->save($this->request->data)) {
-				$this->Session->setFlash(__('The service has been saved.'));
+				$this->goodFlash(__('The service has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The service could not be saved. Please, try again.'));
+				$this->badFlash(__('The service could not be saved. Please, try again.'));
 			}
-		} else {
-			$options = array('conditions' => array('Service.' . $this->Service->primaryKey => $id));
-			$this->request->data = $this->Service->find('first', $options);
 		}
-		$characters = $this->Service->Character->find('list');
-		$this->set(compact('characters'));
+		
+		if ($id && empty($this->request->data)) {
+			$this->request->data = $this->Service->find('first', array(
+				'conditions' => array('Service.id' => $id)
+			));
+			$this->set('id', $id);
+		}
+		$this->set('characters', $this->Service->Character->find('list'));
 	}
 
 /**

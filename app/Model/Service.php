@@ -64,5 +64,15 @@ class Service extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+	
+	public function findAllForAdmin() {
+		return $this->find('all', array(
+			'fields' => array(
+				'Service.id','Service.name','Service.base_price_dollars'
+			),
+			'contain' => array(),
+			'order' => 'Service.name ASC',
+		));
+	}
 
 }

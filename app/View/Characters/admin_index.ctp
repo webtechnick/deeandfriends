@@ -12,17 +12,17 @@
 	</tr>
 	<?php foreach ($characters as $character): ?>
 	<tr>
-		<td>
+		<td class="text-center">
 			<?php echo $this->Friend->headshot($character, 150); ?>
 		</td>
 		<td><?php echo h($character['Character']['name']); ?>&nbsp;</td>
-		<td><?php echo $this->Text->truncate($character['Character']['bio'], 50); ?>&nbsp;</td>
+		<td><?php echo $this->Text->truncate($character['Character']['bio'], 100, array('html' => true)); ?>&nbsp;</td>
 		<td><?php echo $this->Time->niceShort($character['Character']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->niceShort($character['Character']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<div class="btn-group-vertical">
-				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $character['Character']['id']), array('class' => 'btn btn-xs btn-default')); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $character['Character']['id']), array('class' => 'btn btn-xs btn-danger'), __('Are you sure you want to delete # %s?', $character['Character']['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $character['Character']['id']), array('class' => 'btn btn-default')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $character['Character']['id']), array('class' => 'btn btn-danger'), __('Are you sure you want to delete # %s?', $character['Character']['id'])); ?>
 			</div>
 		</td>
 	</tr>
