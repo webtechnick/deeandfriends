@@ -58,4 +58,17 @@ class FriendHelper extends AppHelper {
 		}
 		return false;
 	}
+	
+	public function servicePrice($service = null) {
+		if (!$service) {
+			return null;
+		}
+		if (isset($service['CharactersService']['base_price_dollars_overwrite']) && !empty($service['CharactersService']['base_price_dollars_overwrite'])) {
+			return $service['CharactersService']['base_price_dollars_overwrite'];
+		}
+		if (!empty($service['base_price_dollars'])) {
+			return $service['base_price_dollars'];
+		}
+		return null;
+	}
 }

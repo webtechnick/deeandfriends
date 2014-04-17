@@ -124,6 +124,16 @@ class Character extends AppModel {
 		return $this->saveAll($data);
 	}
 	
+	public function findAllForIndex() {
+		return $this->find('all', array(
+			'conditions' => array(
+				'Character.is_active' => true,
+			),
+			'contain' => array('Headshot'),
+			'order' => 'Character.name ASC'
+		));
+	}
+	
 	public function findForEdit($id) {
 		return $this->find('first', array(
 			'conditions' => array(

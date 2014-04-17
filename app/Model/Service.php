@@ -74,5 +74,16 @@ class Service extends AppModel {
 			'order' => 'Service.name ASC',
 		));
 	}
+	
+	public function findAllForIndex() {
+		return $this->find('all', array(
+			'order' => 'Service.name ASC',
+			'contain' => array(
+				'Character' => array(
+					'fields' => array('Character.name','Character.slug')
+				)
+			)
+		));
+	}
 
 }

@@ -15,11 +15,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
         <?php foreach ($nav_chars as $slug => $char_name): ?>
         	<li><?php echo $this->Html->link($char_name, array('admin' => false, 'controller' => 'characters', 'action' => 'friend_view', 'slug' => $slug)); ?></li>
         <?php endforeach; ?>
         <li><?php echo $this->Html->link('Contact', '/contact'); ?></li>
       </ul>
+      <?php if ($is_admin): ?>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
@@ -35,6 +37,7 @@
           </ul>
         </li>
       </ul>
+      <?php endif; ?>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

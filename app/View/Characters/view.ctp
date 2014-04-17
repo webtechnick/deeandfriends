@@ -2,17 +2,24 @@
 	$this->Friend->set($character);
 ?>
 <div class="characters view">
-	<div class="pull-right">
+	<div class="character-headshot">
 		<?php echo $this->Friend->headshot($character, array('width' => 250, 'class' => 'img-rounded img-responsive')); ?>
 	</div>
-	<h1><?php echo $this->Friend->get('name'); ?></h1>
-	
-	<h3>Services</h3>
+	<h1>
+		<?php echo $this->Friend->get('name'); ?>
+		<?php if ($is_admin): ?><?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span> Edit', array('admin' => true, 'controller' => 'characters', 'action' => 'edit', $this->Friend->get('id')), array('escape' => false, 'class' => 'btn btn-default')); ?><?php endif; ?>
+	</h1>
 	
 	<h3>Biography</h3>
 	<div class="bio">
 		<?php echo $this->Friend->get('bio') ?>
 	</div>
+	
+	<div class="clear"></div>
+	<h3><?php echo $this->Friend->get('name'); ?>'s Services</h3>
+	<?php foreach($character['Service'] as $service): ?>
+		<?php echo $this->element('service', array('service' => $service)); ?>
+	<?php endforeach; ?>
 	
 	<!-- Photos -->
 	<div class="clear"></div>

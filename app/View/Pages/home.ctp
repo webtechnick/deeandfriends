@@ -8,5 +8,7 @@
 <h2>Friends</h2>
 <?php echo $this->element('friends'); ?>
 
+<div class="clear"></div>
+
 <h2>Services</h2>
 <?php echo $this->element('services'); ?>

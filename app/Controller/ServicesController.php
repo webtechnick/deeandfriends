@@ -15,6 +15,17 @@ class ServicesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+	
+	public function index() {
+		$this->set('services', $this->Service->findAllForIndex());
+	}
+	
+	public function get_services() {
+		if (!empty($this->request->params['requested'])) {
+			return $this->Service->findAllForIndex();
+		}
+		die("Do not access directly.");
+	}
 
 /**
  * admin_index method

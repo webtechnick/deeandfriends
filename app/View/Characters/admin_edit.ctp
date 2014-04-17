@@ -51,7 +51,7 @@
 			)); ?>
 			<?php echo $this->Form->input("CharactersService.$i.base_price_dollars_overwrite", array(
 					'value' => $overwrite ? $overwrite['base_price_dollars_overwrite'] : '',
-					'label' => array('text' => 'Overwrite'),
+					'label' => array('text' => 'Overwrite', 'class' => 'col-md-4'),
 					'class' => 'form-control',
 					//'div' => 'input-group',
 					'wrapInput' => 'input-group col-md-4',

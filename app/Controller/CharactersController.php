@@ -37,6 +37,13 @@ class CharactersController extends AppController {
 		$this->set('character', $this->Character->find('first', $options));
 	}
 	
+	public function get_characters() {
+		if (!empty($this->request->params['requested'])) {
+			return $this->Character->findAllForIndex();
+		}
+		die("Do not access directly.");
+	}
+	
 	/**
 	* Friend view, /friend/Dee-Dee
 	*/

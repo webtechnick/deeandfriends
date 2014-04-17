@@ -26,7 +26,12 @@ class AppController extends Controller {
 	public function beforeFilter() {
 		$this->set('nav_chars', $this->Character->findForNav());
 		$this->Configuration->load('DAF');
+		$this->set('is_admin', $this->isAdmin());
 		return parent::beforeFilter();
+	}
+	
+	protected function isAdmin() {
+		return true;
 	}
 	
 	public function goodFlash($message) {
