@@ -19,6 +19,7 @@ class CharactersController extends AppController {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->Auth->allow('get_characters','friend_view');
 		$this->Paginator->settings = $this->paginate;
 	}
 	

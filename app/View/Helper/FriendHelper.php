@@ -71,4 +71,8 @@ class FriendHelper extends AppHelper {
 		}
 		return null;
 	}
+	
+	public function yesNo($boolean) {
+		return $boolean ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>';
+	}
 }

@@ -16,6 +16,11 @@ class ServicesController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 	
+	public function beforeFilter() {
+		$this->Auth->allow('get_services');
+		parent::beforeFilter();
+	}
+	
 	public function index() {
 		$this->set('services', $this->Service->findAllForIndex());
 	}

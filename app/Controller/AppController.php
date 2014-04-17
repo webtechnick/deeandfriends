@@ -17,6 +17,19 @@ class AppController extends Controller {
 	
 	public $components = array(
 		'Session',
+		'Auth' => array(
+      'authorize' => array('Controller'),
+      'loginAction' => array('controller' => 'users', 'action' => 'login'),
+      'allowedActions' => array('search','view','index','get','display'),
+      'logoutRedirect' => array('controller' => 'pages', 'action' => 'home'),
+      'authError' => 'Please Login',
+      'autoRedirect' => false,
+      'authenticate' => array(
+      	'Form' => array(
+      		'fields' => array('username' => 'email')
+      	)
+      )
+    ),
 		'RequestHandler',
 		'DebugKit.Toolbar',
 	);
@@ -24,15 +37,26 @@ class AppController extends Controller {
 	public $uses = array('Character', 'Configuration.Configuration');
 	
 	public function beforeFilter() {
+		$this->set('user', $this->Auth->user());
 		$this->set('nav_chars', $this->Character->findForNav());
 		$this->Configuration->load('DAF');
 		$this->set('is_admin', $this->isAdmin());
 		return parent::beforeFilter();
 	}
 	
-	protected function isAdmin() {
+	/**
+	* Auth authorization function
+	*/
+	public function isAuthorized($user, $request = null) {
+		if (strpos($this->request->action,"admin") !== false){
+			return $this->isAdmin();
+		}
 		return true;
 	}
+	
+	function isAdmin(){
+    return ($this->Auth->user('is_admin')); 
+  }
 	
 	public function goodFlash($message) {
 		$this->__setFlash($message, 'alert-success');
