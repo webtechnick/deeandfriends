@@ -11,12 +11,11 @@ $character = isset($character) ? $character : null;
 		</div>
 		
 		<div class="panel-body character-bio">
-			<div class="pull-left mr10">
+			<div class="pull-right mr10">
 				<?php echo $this->Html->link($this->Friend->headshot($character, array('width' => 75, 'class' => 'img-rounded')), $url, array('escape' => false)); ?>
 			</div>
 			<?php echo $this->Text->truncate($character['Character']['bio'], 200, array('html' => true)); ?>
 			
-			<div class="clear"></div>
 			<br>
 			<?php echo $this->Html->link('Read More About ' . $character['Character']['name'], $url, array('class' => 'btn btn-default btn-success')); ?>
 		</div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-purple" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -14,7 +14,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
         <li><a href="/services">Services</a></li>
         <?php foreach ($nav_chars as $slug => $char_name): ?>
         	<li><?php echo $this->Html->link($char_name, array('admin' => false, 'controller' => 'characters', 'action' => 'friend_view', 'slug' => $slug)); ?></li>
