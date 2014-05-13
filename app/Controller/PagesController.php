@@ -10,7 +10,7 @@ class PagesController extends AppController {
 	public $uses = array('Character');
 
 	public function beforeFilter() {
-		$this->Auth->allow('home');
+		$this->Auth->allow('home', 'contact');
 		parent::beforeFilter();
 	}
 	
