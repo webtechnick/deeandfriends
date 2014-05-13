@@ -18,7 +18,7 @@
 	<div class="col-md-4 text-center p5">
 		<?php echo $this->Html->link('Book Me Now!', '/contact', array('class' => 'btn btn-lg btn-primary')) ?>
 	</div>
-	<div class="col-md-4 text-right p5">
+	<div class="col-md-4 text-center p5">
 		<?php echo $this->Html->link('WebTechNick', 'http://www.webtechnick.com') ?><br />
 		&copy; copyright <?php echo date('Y'); ?>
 	</div>
