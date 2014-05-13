@@ -1,7 +1,7 @@
 <?php
 App::uses('Model', 'Model');
 class AppModel extends Model {
-	public $actsAs = array('Containable');
+	public $actsAs = array('Containable','Icing.Emailable');
 	
 	/**
 	* overload the find method to create a 'last' type that will return the last created item.
@@ -14,4 +14,11 @@ class AppModel extends Model {
 		
 		return parent::find($type, $options);
 	}
+	
+	public function email($to, $from, $template, $subject, $viewVars = array(), $attachments = array(), $config = 'default', $helpers = array()){
+		$config = 'mailjet';
+		$helpers = array('Html','Number','Time');
+		return $this->sendEmail($to, $from, $template, $subject, $viewVars, $attachments, $config, $helpers);
+	}
+	
 }

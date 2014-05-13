@@ -159,4 +159,13 @@ class Character extends AppModel {
 			'fields' => array('Character.slug','Character.name')
 		));
 	}
+	
+	public function findList() {
+		return $this->find('list', array(
+			'conditions' => array(
+				'Character.is_active' => true,
+			),
+			'fields' => array('Character.id','Character.name'),
+		));
+	}
 }
