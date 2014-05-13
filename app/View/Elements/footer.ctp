@@ -1,5 +1,9 @@
 <div class="row p20">
 	<div class="col-md-4 text-center p5">
+		<p class="lead">
+			<?php echo $this->Html->link(Configure::read('DAF.email'), 'mailto:' . Configure::read('DAF.email')); ?><br>
+			<?php echo Configure::read('DAF.phone'); ?>
+		</p>
 		<!-- <?php echo $this->Form->create('Newsletter', array(
 			'class' => 'form-inline',
 		)); ?>
