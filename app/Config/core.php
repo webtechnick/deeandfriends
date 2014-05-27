@@ -372,3 +372,9 @@ Configure::write('env', 'dev');
 if(file_exists(APP . 'Config' . DS . 'core.local.php')){
   require_once(APP . 'Config' . DS . 'core.local.php');
 }
+/**
+* new relic
+*/
+if (file_exists(APP . 'Config' . DS . 'newrelic.php')) {
+  require_once(APP . 'Config' . DS . 'newrelic.php');
+}
